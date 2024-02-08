@@ -1,0 +1,93 @@
+/*Blocks are written using PascalCase, like in VideoPlayer.
+Elements are written using camelCase, joined to the block name using a single underscore (_), like in VideoPlayer_buttonsContainer.
+
+<form class="form" action="/">
+  <input class="form__search" name="s">
+  <input class="form__submit" type="submit">
+</form>
+
+*/
+
+
+.App {
+display: flexbox;
+margin:  0 auto;
+width: 60%;
+
+}
+
+
+
+
+.App__authIntel { 
+
+
+  margin-bottom:  100px;
+
+}
+
+
+.organismBattlefield__Container {
+
+  padding: 40px;
+}
+
+.organismBattlefield__ContainerItem {
+
+  padding: 10px;
+  border-left: solid 2px #dfdddd;
+  margin-bottom: 20px;
+  word-break: break-all;
+
+}
+
+input {
+  display: block;
+}
+
+
+
+li {
+
+
+  list-style: none;
+}
+
+.organismBattlefield__Like {
+
+display: contents;
+
+}
+
+.organismBattlefield__Reply {
+
+  display: contents;
+  
+  }
+
+
+
+ .organismBattlefield__likeReplyContainer {
+display: block;
+
+  }
+
+  button {
+
+    margin: 5px;
+    border: none;
+    font-weight: 600;
+    
+  }
+
+
+  .App__AvatarImage {
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: -12px;
+   
+  }
+
+  
