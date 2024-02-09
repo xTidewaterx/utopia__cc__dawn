@@ -19,8 +19,9 @@ import { RenderAllLevels } from "./components/fetchData/RenderDataExperiment";
 import { Reply } from "./components/addData/Reply";
 import { RenderProfile } from "./components/auth/RenderProfile";
 import { LogAsyncValue } from "./components/strictlyData/ReturnAsyncData";
+import { TopBanner } from "./components/strictlyData/TopBanner";
+import { TopText } from "./components/strictlyData/TopText";
 export const app = initializeApp(AppConfig);
-
 
 //Context is what survives across applications
 //our protected route is only rendered on our "/" then we log values, protective route is only /
@@ -33,42 +34,33 @@ export const Context = createContext(false);
 
 function App() {
   const [context, setContext] = useState("");
-  const [signInState, setSignInState] = useState({uid: "", accessToken: "", displayName:""});
+  const [signInState, setSignInState] = useState({
+    uid: "",
+    accessToken: "",
+    displayName: "",
+  });
 
   const [ternaryAction, setTernaryAction] = useState(
     !signInState ? "Sign In" : "Sign Out"
   );
 
   console.log(context);
-  console.log(signInState)
+  console.log(signInState);
 
-
-      
-  const {uid, displayName, accessToken} =  context[1] ? context[1] : {};
+  const { uid, displayName, accessToken } = context[1] ? context[1] : {};
   //useEffect not called twice, single, on load
   //now useEffect renders extra, it now is all
   useEffect(() => {
-
-    console.log(Context)
-
-
+    console.log(Context);
   }, [context]);
-
-
-
-
-
 
   return (
     <div className="App">
-<h1>Font</h1>
-{/*bem naming:: The element name is separated from the block name by a double underscore (__). */}
+
+      {/*bem naming:: The element name is separated from the block name by a double underscore (__). */}
 
       <Context.Provider value={[context, setContext]}>
-
-
         <ListenAuthChanges />
-
 
         <Routes>
           <Route
@@ -76,40 +68,26 @@ function App() {
             element={
               <ProtectedRoute>
                 <Home />
-             <div className="App__AuthIntel">account: uid: {uid + "displayName:  "+ displayName}</div>  
-                <RenderAllLevels/>
-           
-                <GoogleSignOut/>
+                <div className="App__AuthIntel">
+                  account: uid: {uid + "displayName:  " + displayName}
+                </div>
+<TopText/>
+                <TopBanner/>
+                <RenderAllLevels />
+
+                <GoogleSignOut />
                 <Link to={"/profile/" + uid}>{uid}</Link>
-
-
-          
-      
               </ProtectedRoute>
             }
           />
 
           <Route path="/signIn" element={<GoogleSignIn />} />
-        
+
           <Route path="/organismExperiment" element={<RenderAllLevels />} />
 
-          <Route path="/profile/:id" element={<RenderProfile uid= {uid} />} />
-
-
-
+          <Route path="/profile/:id" element={<RenderProfile uid={uid} />} />
         </Routes>
-
-   
-
-
-
       </Context.Provider>
-
-
-
-     
-
- 
     </div>
   );
 }
